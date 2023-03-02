@@ -9,7 +9,7 @@ import java.util.*;  // For Observer
 import java.awt.*;
 import javax.swing.*;
 
-public class View3 extends JPanel {
+public class View3 extends JPanel implements Observer{
   
     private Model model;
     private Controller2 contr;   // Parent Frame
@@ -29,10 +29,12 @@ public class View3 extends JPanel {
         display = new JTextField("No data", 15);
         add(display);
         
+        model.addObserver(this);
+        
     } // constructor
     
     // Called by controller to refresh the view:
-    public void update() {
+    public void update(Observable o, Object arg) {
         
         // Fetch (potentially) updated information and display it
         int a = model.getDataA();
